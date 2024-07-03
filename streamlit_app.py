@@ -1,4 +1,3 @@
-
 import streamlit as st
 import torch
 import torchvision.transforms as transforms
@@ -18,7 +17,7 @@ def transform_image(image):
 st.title('MNIST Digit Classification')
 st.write('Upload an image to classify it using a pre-trained feedforward neural network.')
 
-uploaded_file = st.file_uploader("Choose an image...", type=["png","jpg","jpeg"])
+uploaded_file = st.file_uploader("Choose an image...", type=["png", "jpg", "jpeg"])
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption='Uploaded Image.', use_column_width=True)
@@ -28,7 +27,7 @@ if uploaded_file is not None:
     image_tensor = transform_image(image)
     
     net = SimpleMnistModel()
-    net.load_state_dict(torch.load('mnist_net.pth'))
+    net.load_state_dict(torch.load('/kaggle/working/mnist_classifier/mnist_net.pth', map_location=torch.device('cpu')))
     net.eval()
     
     with torch.no_grad():
