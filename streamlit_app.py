@@ -27,7 +27,7 @@ if uploaded_file is not None:
     image_tensor = transform_image(image)
     
     net = SimpleMnistModel()
-    net.load_state_dict(torch.load('/kaggle/working/mnist_classifier/mnist_net.pth', map_location=torch.device('cpu')))
+    net.load_state_dict(torch.load('mnist_net.pth', map_location=torch.device('cpu')))
     net.eval()
     
     with torch.no_grad():
